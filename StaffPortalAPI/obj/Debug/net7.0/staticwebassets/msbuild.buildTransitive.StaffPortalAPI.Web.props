@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\StaffPortalAPI.Web.props" />
+</Project>
