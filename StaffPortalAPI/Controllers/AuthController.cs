@@ -6,6 +6,10 @@ using StaffPortalAPI.Domain.Models.Entities;
 using StaffPortalAPI.Persistence.DTOs;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using StaffPortalAPI.Persistence.Token;
+using BCrypt.Net;
+using Microsoft.EntityFrameworkCore;
+using StaffPortalAPI.Persistence.Data;
 
 namespace StaffPortalAPI.Web.Controllers
 {
@@ -15,43 +19,74 @@ namespace StaffPortalAPI.Web.Controllers
     {
         public static User user = new();
         private readonly IConfiguration _configuration;
+        private readonly DataContext _context;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration, DataContext context)
         {
+            _context = context;
             _configuration = configuration;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDTO request)
+        public async Task<ActionResult<User>> Register(UserRegisterDTO request)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
             user.Email = request.Email;
+            user.Role = request.Role;
             user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+
+            await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             return Ok(user);
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDTO request)
+        public async Task<ActionResult<string>> Login(UserLoginDTO request)
         {
             if (user.Email != request.Email)
             {
                 return BadRequest("User not found.");
             }
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             {
                 return BadRequest("Wrong password.");
             }
-            string token = Createtoken(user);
+            string token = CreateToken(user);
+
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken);
+
             return Ok(token);
         }
 
-        private string Createtoken(User user)
+        [HttpPost("refresh-token")]
+        public async Task<ActionResult<string>> RefreshToken()
         {
-            List<Claim> claims = new List<Claim>
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (!user.RefreshToken.Equals(refreshToken))
             {
-                new Claim(ClaimTypes.Email, user.Email)
+                return Unauthorized("Invalid refresh token.");
+            }
+            else if(user.TokenExpires < DateTime.Now)
+            {
+                return Unauthorized("Token expired.");
+            }
+            string token = CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken);
+
+            return Ok(token);
+        }
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new()
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -61,31 +96,40 @@ namespace StaffPortalAPI.Web.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds
                 );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        private RefreshToken GenerateRefreshToken()
         {
-            using (var hmac = new HMACSHA512())
+            var refreshToken = new RefreshToken
             {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7)
+            };
+
+            return refreshToken;
         }
 
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        private void SetRefreshToken(RefreshToken newRefreshToken)
         {
-            using (var hmac = new HMACSHA512(passwordSalt))
+            var cookieOptions = new CookieOptions 
             {
-                var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return computeHash.SequenceEqual(passwordHash);
-            }
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires,
+            };
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.TokenCreated = newRefreshToken.Created;
+            user.TokenExpires = newRefreshToken.Expires;
+
+            _context.SaveChanges();
         }
+
 
     }
 }

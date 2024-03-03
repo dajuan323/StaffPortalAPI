@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a9zQVVRGZyP57NYvkBG6nWGJIBVij2YbARD0j2N21mG4GwD6F6CzMF9wKD4zLq6NJJVCs695cbdyWrVvEGF8Kw==",
+  "dgSpecHash": "Kshm9arZprpn7/OIZXgkSsr9mUHbyUJo6CY+hiFb/W2wMHp0Tqpe3X/wlY7nwJMAvHfrXl+WlcyvbLKjUIoBjQ==",
   "success": true,
   "projectFilePath": "C:\\training\\dotnet\\APIs\\StaffPortal\\StaffPortalAPI\\StaffPortalAPI.Persistence\\StaffPortalAPI.Persistence.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.14\\microsoft.entityframeworkcore.tools.7.0.14.nupkg.sha512",
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\macar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",

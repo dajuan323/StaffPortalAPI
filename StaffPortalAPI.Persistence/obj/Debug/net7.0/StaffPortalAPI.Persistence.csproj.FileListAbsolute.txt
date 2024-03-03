@@ -9,6 +9,7 @@ C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\ob
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.AssemblyInfoInputs.cache
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.AssemblyInfo.cs
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.csproj.CoreCompileInputs.cache
+C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.sourcelink.json
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.csproj.CopyComplete
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\StaffPortalAPI.Persistence.dll
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Persistence\obj\Debug\net7.0\refint\StaffPortalAPI.Persistence.dll
