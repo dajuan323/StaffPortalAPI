@@ -6,7 +6,7 @@ using StaffPortalAPI.Domain.Models.Entities;
 using StaffPortalAPI.Persistence.DTOs;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using StaffPortalAPI.Persistence.Token;
+using StaffPortalAPI.Persistence.Models;
 using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 using StaffPortalAPI.Persistence.Data;
