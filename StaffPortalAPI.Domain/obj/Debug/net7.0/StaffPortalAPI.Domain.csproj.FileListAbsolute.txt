@@ -16,6 +16,7 @@ C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Deb
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.AssemblyInfoInputs.cache
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.AssemblyInfo.cs
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.csproj.CoreCompileInputs.cache
+C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.sourcelink.json
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.dll
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\refint\StaffPortalAPI.Domain.dll
 C:\training\dotnet\APIs\StaffPortal\StaffPortalAPI\StaffPortalAPI.Domain\obj\Debug\net7.0\StaffPortalAPI.Domain.pdb

@@ -1,7 +1,5 @@
-﻿using StaffPortalAPI.Persistence.DTOs;
-using StaffPortalAPI.Domain.Models.Entities;
+﻿using StaffPortalAPI.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace StaffPortalAPI.Persistence.Data;
 
@@ -11,6 +9,9 @@ public class DataContext : DbContext
     {
     }
 
+    public DbSet<Customer> Customers { get; set; }
+
+    public DbSet<User> Users { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
@@ -98,8 +99,6 @@ public class DataContext : DbContext
                 }
             );
     }
-    public DbSet<Customer> Customers { get; set; }
 
-    public DbSet<User> Users { get; set; }
 
 }
