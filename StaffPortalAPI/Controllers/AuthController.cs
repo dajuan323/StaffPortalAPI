@@ -46,14 +46,25 @@ namespace StaffPortalAPI.Web.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLoginDTO request)
         {
-            if (user.Email != request.Email)
+            if (request == null)
             {
-                return BadRequest("User not found.");
+                return BadRequest("Invaalid Request.");
+            }
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest("Email and password are required");
+            }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            
+            if (user == null)
+            {
+                return BadRequest("User not found");
             }
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             {
-                return BadRequest("Wrong password.");
+                return BadRequest("Wrong Password.");
             }
+
             string token = CreateToken(user);
 
             var refreshToken = GenerateRefreshToken();
