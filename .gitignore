@@ -3,6 +3,39 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore dependency directories
+node_modules/
+packages/
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+
+# Ignore OS and system files
+Thumbs.db
+.DS_Store
+
+# Ignore logs and temporary files
+*.log
+*.cache
+
+# Ignore environment-specific files
+.env
+*.config
+
+# Ignore generated files
+*.generated.cs
+
+# Ignore personal configuration files
+settings.json
+
 # User-specific files
 *.rsuser
 *.suo
