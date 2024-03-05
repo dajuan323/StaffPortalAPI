@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StaffPortalAPI.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71db942fc76267d3c647dde54d93dc1ac8812518")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+350af8952bcc18d76d845a5e28bd598a93b3f049")]
 [assembly: System.Reflection.AssemblyProductAttribute("StaffPortalAPI.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StaffPortalAPI.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
