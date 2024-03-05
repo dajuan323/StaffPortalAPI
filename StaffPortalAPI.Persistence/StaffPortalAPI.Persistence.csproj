@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Factories\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>
