@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StaffPortalAPI.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c969931a3c2cf87da2b130a18440e6c5be23548e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e243f6f1a4f95b218a4884dc2651c73f81b2cf7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("StaffPortalAPI.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StaffPortalAPI.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
