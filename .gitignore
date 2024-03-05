@@ -7,6 +7,14 @@
 bin/
 obj/
 
+# Ignore compiled binaries and build artifacts
+*.dll
+*.pdb
+*.exe
+
+# Ignore intermediate build files
+*.assemblyinfo
+
 # Ignore dependency directories
 node_modules/
 packages/
