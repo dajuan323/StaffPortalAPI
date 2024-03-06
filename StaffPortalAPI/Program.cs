@@ -24,6 +24,14 @@ builder.Services.AddSwaggerGen(op => {
     
 });
 
+builder.Services.AddStackExchangeRedisCache(o =>
+    {
+        o.Configuration = builder.Configuration.GetConnectionString("Redis");
+        o.InstanceName = "StaffPortal_";
+    }
+);
+ 
+
 builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("default"),
     b => b.MigrationsAssembly("StaffPortalAPI.Persistence")));
 
