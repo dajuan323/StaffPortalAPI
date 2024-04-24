@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using StaffPortalAPI.Persistence.Data;
+using Serilog;
+using StaffPortalAPI.Application;
+using StaffPortalAPI.Application.Data;
+using StaffPortalAPI.Persistence;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(op => {
     op.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -24,8 +24,18 @@ builder.Services.AddSwaggerGen(op => {
     
 });
 
-builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("default"),
-    b => b.MigrationsAssembly("StaffPortalAPI.Persistence")));
+
+builder.Host.ConfigureServices((hostContext, services) =>
+{
+    services.AddPersistence(hostContext.Configuration);
+    
+});
+builder.Services.AddApplication();
+
+
+
+
+
 
 builder.Services.AddAuthentication(op=> {
     op.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -46,11 +56,12 @@ builder.Services.AddAuthentication(op=> {
 
     });
 
-
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 
 builder.Services.AddCors(options =>
-    options.AddPolicy("Development", builder =>
+    options.AddPolicy("MyPolicy", builder =>
     {
         builder.AllowAnyOrigin()
                .WithOrigins("http://localhost:3000")
@@ -70,13 +81,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseCors("Development");
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 

@@ -1,4 +1,4 @@
-namespace StaffPortalAPI
+namespace StaffPortalAPI.Web
 {
     public class WeatherForecast
     {
